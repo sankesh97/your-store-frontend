@@ -1,0 +1,13 @@
+.header {
+  height: 100px;
+  width: 100vw;
+  background-color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header input {
+  width: 200px;
+  line-height: 2em;
+}

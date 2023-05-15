@@ -1,6 +1,6 @@
 import './Home.module.css';
 
 const Home = () => {
-  return <>Nothing Much</>;
+  return <></>;
 };
 export default Home;
