@@ -1,4 +1,4 @@
-import { CartProvider, CartContext } from './cartContext';
+import { CartProvider, CartContext } from './CartContext';
 import { ProductContext, ProductProvider } from './ProductContext';
 import { CategoryContext, CategoryProvider } from './CategoryContext';
 import { WishListContext, WishListProvider } from './WishListContext';
