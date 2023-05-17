@@ -7,11 +7,9 @@ export const CategoryProvider = ({ children }) => {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch(
-        'https://your-store-backend.netlify.app/api/categories'
-      );
+      const response = await fetch('/api/categories');
       const jsonData = await response.json();
-      setCategoryList(jsonData);
+      setCategoryList(jsonData.categories);
     } catch (err) {
       console.log(err);
     }

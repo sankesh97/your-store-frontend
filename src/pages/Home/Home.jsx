@@ -81,15 +81,19 @@ const Home = () => {
         </div>
       </section>
       <section className='text-center'>
-        <h2 className='h2'>Product Categories</h2>
+        <h2 className='h2'>Our Products</h2>
         <div className='container'>
           <div className='row'>
-            {console.log(categoryList)}
+            {categoryList.length &&
+              categoryList.map(({ id, category, description }) => (
+                <div key={id} className='col-4 categories'>
+                  <h2>{category}</h2>
+                  <p>{description}</p>
+                </div>
+              ))}
             <div className='col-4 p-2'>
               <h2></h2>
             </div>
-            <div className='col-4 p-2'>Hello</div>
-            <div className='col-4 p-2'>Hello</div>
           </div>
         </div>
       </section>
