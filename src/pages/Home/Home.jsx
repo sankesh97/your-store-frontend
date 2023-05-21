@@ -1,8 +1,8 @@
-import './Home.module.css';
-import slideOne from '../../assets/slide-1.jpg';
-import slideTwo from '../../assets/slide-2.jpg';
 import { useContext, useEffect } from 'react';
 import { CategoryContext } from '../../context/AppContext';
+import './Home.css';
+import slideOne from '../../assets/slide-1.jpg';
+import slideTwo from '../../assets/slide-2.jpg';
 
 const Home = () => {
   const { categoryList, fetchCategories } = useContext(CategoryContext);
@@ -37,21 +37,9 @@ const Home = () => {
           <div className='carousel-inner'>
             <div className='carousel-item active'>
               <img src={slideOne} className='d-block w-100' alt='...' />
-              {/* <div className='carousel-caption d-none d-md-block'>
-                <h5>First slide label</h5>
-                <p>
-                  Some representative placeholder content for the first slide.
-                </p>
-              </div> */}
             </div>
             <div className='carousel-item'>
               <img src={slideTwo} className='d-block w-100' alt='...' />
-              {/* <div className='carousel-caption d-none d-md-block'>
-                <h5>Second slide label</h5>
-                <p>
-                  Some representative placeholder content for the second slide.
-                </p>
-              </div> */}
             </div>
           </div>
           <button
@@ -80,15 +68,15 @@ const Home = () => {
           </button>
         </div>
       </section>
-      <section className='text-center'>
-        <h2 className='h2'>Our Products</h2>
+      <section className='text-center p-1'>
+        <h2 className='h2 mb-5'>Our Products</h2>
         <div className='container'>
-          <div className='row'>
+          <div className='row justify-content-around'>
             {categoryList.length &&
               categoryList.map(({ id, category, description }) => (
-                <div key={id} className='col-4 categories'>
+                <div key={id} className='col-4'>
                   <h2>{category}</h2>
-                  <p>{description}</p>
+                  {/* <p>{description}</p> */}
                 </div>
               ))}
             <div className='col-4 p-2'>
