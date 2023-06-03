@@ -1,4 +1,5 @@
 import { createContext, useState } from 'react';
+import axios from 'axios';
 
 export const CategoryContext = createContext();
 
@@ -7,9 +8,8 @@ export const CategoryProvider = ({ children }) => {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch('/api/categories');
-      const jsonData = await response.json();
-      setCategoryList(jsonData.categories);
+      const response = await axios.get('/api/categories');
+      setCategoryList(response.data.categories);
     } catch (err) {
       console.log(err);
     }

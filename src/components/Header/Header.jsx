@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import styles from './Header.module.css';
 
 const Header = () => {
@@ -5,10 +6,10 @@ const Header = () => {
     <>
       <header>
         <nav className='navbar navbar-expand-lg bg-dark'>
-          <div className='container-fluid d-flex justify-content-around'>
-            <a className='navbar-brand text-white' href='#'>
+          <div className='container'>
+            <NavLink className='navbar-brand text-white' to='/'>
               Your Electronics Store
-            </a>
+            </NavLink>
             <button
               className='navbar-toggler'
               type='button'
@@ -31,10 +32,11 @@ const Header = () => {
                   placeholder='Search'
                   aria-label='Search'
                 />
-                <button className='btn btn-outline-success' type='submit'>
+                <button className='btn btn-light' type='submit'>
                   Search
                 </button>
               </form>
+
               <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
                 <li className='nav-item'>
                   <a className='nav-link active' aria-current='page' href='#'>

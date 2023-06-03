@@ -1,0 +1,5 @@
+{"email": "sankeshjain8497@gmail.com",
+        "password": "sankesh97",
+      }
+
+      /api/auth/login

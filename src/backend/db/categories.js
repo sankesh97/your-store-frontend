@@ -11,17 +11,20 @@ export const categories = [
     category: 'Laptops',
     description:
       'Laptops are portable personal computers designed for on-the-go computing. They come in various sizes and configurations, ranging from lightweight ultrabooks to powerful gaming laptops.',
+    imgLink: '',
   },
   {
     _id: uuid(),
     category: 'Phones',
     description:
       'Mobile phones, also known as smartphones, are portable electronic devices used for communication, browsing the internet, taking photos, and accessing apps. They come in various sizes and operating systems.',
+    imgLink: '',
   },
   {
     _id: uuid(),
     category: 'Televisions',
     description:
       'Televisions are electronic devices used for displaying visual content, such as TV shows, movies, and video games. They come in various sizes, resolutions, and display technologies, from LED to OLED and QLED.',
+    imgLink: '',
   },
 ];
