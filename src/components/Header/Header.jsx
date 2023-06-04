@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Header.module.css';
+import logo from '../../assets/your-Electronics-Logo.png';
 
 const Header = () => {
   return (
@@ -8,7 +9,7 @@ const Header = () => {
         <nav className='navbar navbar-expand-lg bg-dark'>
           <div className='container'>
             <NavLink className='navbar-brand text-white' to='/'>
-              Your Electronics Store
+              <img src={logo} style={{ maxWidth: '200px' }} />
             </NavLink>
             <button
               className='navbar-toggler'

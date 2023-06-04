@@ -5,6 +5,7 @@ export const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
   const [productList, setProductList] = useState([]);
+  const [currentProduct, setCurrentProduct] = useState([]);
   const [filteredProductList, setFilteredProductList] = useState([]);
 
   const fetchProducts = async () => {
@@ -17,6 +18,16 @@ export const ProductProvider = ({ children }) => {
     }
   };
 
+  const fetchAProduct = async (productId) => {
+    try {
+      console.log(productId);
+      const response = await axios.get('/api/products/' + productId);
+      setCurrentProduct(response.data.product);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -24,6 +35,8 @@ export const ProductProvider = ({ children }) => {
         setProductList,
         fetchProducts,
         filteredProductList,
+        fetchAProduct,
+        currentProduct,
       }}
     >
       {children}

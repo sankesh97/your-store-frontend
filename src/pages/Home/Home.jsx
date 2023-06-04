@@ -15,26 +15,6 @@ const Home = () => {
 
   return (
     <>
-      {/* Categories Section */}
-      <section className='text-center p-1'>
-        <h2 className='h2 mb-5'>Our Products</h2>
-        <div className='container'>
-          <div className='row justify-content-around'>
-            {categoryList.length &&
-              categoryList.map(({ id, category, description, imgLink }) => (
-                <div key={id} className='col-4 d-flex aling-items-stretch'>
-                  <Card imgLink={imgLink}>
-                    <h2>{category}</h2>
-                    <p>{description}</p>
-                  </Card>
-                </div>
-              ))}
-            <div className='col-4 p-2'>
-              <h2></h2>
-            </div>
-          </div>
-        </div>
-      </section>
       {/* Slider Section */}
       <section className='container'>
         <div
@@ -90,6 +70,23 @@ const Home = () => {
             ></span>
             <span className='visually-hidden'>Next</span>
           </button>
+        </div>
+      </section>
+      {/* Categories Section */}
+      <section className='text-center py-5'>
+        <h2 className='h2 mb-5'>Our Products</h2>
+        <div className='container'>
+          <div className='row justify-content-around'>
+            {categoryList.length &&
+              categoryList.map(({ id, category, description, imgLink }) => (
+                <div key={id} className='col-md-4 d-flex align-items-stretch'>
+                  <Card imgLink={imgLink}>
+                    <h2>{category}</h2>
+                    <p>{description}</p>
+                  </Card>
+                </div>
+              ))}
+          </div>
         </div>
       </section>
     </>

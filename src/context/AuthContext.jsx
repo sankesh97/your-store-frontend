@@ -21,17 +21,14 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const loginHandler = async (event) => {
+  const loginHandler = async (event, email, password) => {
     event.preventDefault();
     try {
-      const response = await axios.post('/api/auth/login', {
-        email: 'sankeshjain8497@gmail.com',
-        password: 'sankesh97',
-      });
-      console.log(response);
-      setEncodedToken(response);
-      localStorage.setItem('token', encodedToken);
-      console.log(response);
+      console.log(email, password);
+      const response = await axios.post('/api/auth/login', { email, password });
+      console.log(response.data.encodedToken);
+      setEncodedToken(response.data.encodedToken);
+      localStorage.setItem('token', response.data.encodedToken);
     } catch (err) {
       console.log(err.response);
     }

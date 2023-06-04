@@ -11,6 +11,7 @@ import Footer from './components/Footer/Footer';
 import Authentication from './pages/Authentication/Authentication';
 import ProductListing from './pages/ProductListing';
 import MockAPI from './pages/MockMan';
+import SingleProduct from './pages/SingleProduct/SingleProduct';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/auth/:authMethod' element={<Authentication />} />
           <Route path='/products' element={<ProductListing />} />
+          <Route path='/products/:productId' element={<SingleProduct />} />
           <Route path='/mockman' element={<MockAPI />} />
         </Routes>
       </main>
