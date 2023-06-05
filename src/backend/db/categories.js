@@ -10,21 +10,21 @@ export const categories = [
     _id: uuid(),
     category: 'Laptops',
     description:
-      'Laptops are portable personal computers designed for on-the-go computing. They come in various sizes and configurations, ranging from lightweight ultrabooks to powerful gaming laptops.',
-    imgLink: '',
+      'Experience the perfect blend of power and mobility with laptops, offering sleek designs, cutting-edge technology, and limitless possibilities at your fingertips.',
+    imgLink: './images/categories/laptop-category.jpg',
   },
   {
     _id: uuid(),
     category: 'Phones',
     description:
-      'Mobile phones, also known as smartphones, are portable electronic devices used for communication, browsing the internet, taking photos, and accessing apps. They come in various sizes and operating systems.',
-    imgLink: '',
+      'Unleash the world in your palm, connecting you to loved ones, entertainment, and endless opportunities, anytime, anywhere.',
+    imgLink: './images/categories/mobile-phone-category.jpg',
   },
   {
     _id: uuid(),
     category: 'Televisions',
     description:
-      'Televisions are electronic devices used for displaying visual content, such as TV shows, movies, and video games. They come in various sizes, resolutions, and display technologies, from LED to OLED and QLED.',
-    imgLink: '',
+      'Transform your living space into a captivating cinematic experience, with stunning visuals and immersive audio that bring every moment to life.',
+    imgLink: './images/categories/television-category.jpg',
   },
 ];

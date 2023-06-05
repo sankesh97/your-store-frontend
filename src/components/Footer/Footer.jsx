@@ -1,9 +1,8 @@
 const Footer = () => {
   return (
     <>
-      <hr />
-      <div className='container-fluid'>
-        <div className='row p-1'>
+      <div className='container-fluid bg-dark text-light'>
+        <div className='row gy-3'>
           <div className='col'>
             <p>Copyright 2023 © Your Electronic Store. All right reserved.</p>
           </div>
