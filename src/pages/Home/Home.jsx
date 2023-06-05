@@ -6,6 +6,7 @@ import { CategoryContext } from '../../context/AppContext';
 import './Home.css';
 import slideOne from '../../assets/slide-1.jpg';
 import slideTwo from '../../assets/slide-2.jpg';
+import { NavLink } from 'react-router-dom';
 
 const Home = () => {
   const { categoryList, fetchCategories } = useContext(CategoryContext);
@@ -76,13 +77,15 @@ const Home = () => {
       <section className='text-center py-5'>
         <h2 className='h2 mb-5'>Our Products</h2>
         <div className='container'>
-          <div className='row justify-content-around'>
+          <div className='row gy-5 justify-content-around'>
             {categoryList.length &&
               categoryList.map(({ id, category, description, imgLink }) => (
-                <div key={id} className='col-md-4 d-flex align-items-stretch'>
+                <div key={id} className='col-md-6 d-flex align-items-stretch'>
                   <Card imgLink={imgLink}>
-                    <h2>{category}</h2>
-                    <p>{description}</p>
+                    <NavLink to={'/categories'}>
+                      <h2>{category}</h2>
+                      <p>{description}</p>
+                    </NavLink>
                   </Card>
                 </div>
               ))}
