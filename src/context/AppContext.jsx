@@ -13,15 +13,15 @@ export {
 
 const AppContext = ({ children }) => {
   return (
-    <CartProvider>
-      <ProductProvider>
-        <CategoryProvider>
-          <WishListProvider>
-            <AuthProvider>{children}</AuthProvider>
-          </WishListProvider>
-        </CategoryProvider>
-      </ProductProvider>
-    </CartProvider>
+    <AuthProvider>
+      <CartProvider>
+        <ProductProvider>
+          <CategoryProvider>
+            <WishListProvider>{children}</WishListProvider>
+          </CategoryProvider>
+        </ProductProvider>
+      </CartProvider>
+    </AuthProvider>
   );
 };
 export default AppContext;

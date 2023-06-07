@@ -6,8 +6,8 @@ const Header = () => {
   return (
     <>
       <header>
-        <nav className='navbar navbar-expand-lg bg-dark'>
-          <div className='container'>
+        <nav className='navbar navbar-expand-lg bg-dark text-white'>
+          <div className='container py-2'>
             <NavLink className='navbar-brand text-white' to='/'>
               <img src={logo} style={{ maxWidth: '200px' }} />
             </NavLink>
@@ -19,6 +19,7 @@ const Header = () => {
               aria-controls='navbarSupportedContent'
               aria-expanded='false'
               aria-label='Toggle navigation'
+              data-bs-theme='dark'
             >
               <span className='navbar-toggler-icon'></span>
             </button>
@@ -26,7 +27,7 @@ const Header = () => {
               className='collapse navbar-collapse'
               id='navbarSupportedContent'
             >
-              <form className='d-flex' role='search'>
+              <form className='d-flex me-auto' role='search'>
                 <input
                   className='form-control me-2'
                   type='search'
@@ -40,48 +41,19 @@ const Header = () => {
 
               <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
                 <li className='nav-item'>
-                  <a className='nav-link active' aria-current='page' href='#'>
-                    Home
-                  </a>
+                  <NavLink className='text-white' to='/products'>
+                    <i className='bi bi-person-circle fs-4'></i>
+                  </NavLink>
                 </li>
                 <li className='nav-item'>
-                  <a className='nav-link' href='#'>
-                    Link
-                  </a>
-                </li>
-                <li className='nav-item dropdown'>
-                  <a
-                    className='nav-link dropdown-toggle'
-                    href='#'
-                    role='button'
-                    data-bs-toggle='dropdown'
-                    aria-expanded='false'
-                  >
-                    Dropdown
-                  </a>
-                  <ul className='dropdown-menu'>
-                    <li>
-                      <a className='dropdown-item' href='#'>
-                        Action
-                      </a>
-                    </li>
-                    <li>
-                      <a className='dropdown-item' href='#'>
-                        Another action
-                      </a>
-                    </li>
-                    <li>
-                      <hr className='dropdown-divider' />
-                    </li>
-                    <li>
-                      <a className='dropdown-item' href='#'>
-                        Something else here
-                      </a>
-                    </li>
-                  </ul>
+                  <NavLink className='text-white' to='/wishlist'>
+                    <i className='bi bi-person-heart fs-4'></i>
+                  </NavLink>
                 </li>
                 <li className='nav-item'>
-                  <a className='nav-link disabled'>Disabled</a>
+                  <NavLink className='text-white' to='/cart'>
+                    <i className='bi bi-bag fs-4'></i>
+                  </NavLink>
                 </li>
               </ul>
             </div>

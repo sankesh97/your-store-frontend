@@ -82,7 +82,7 @@ const Home = () => {
               categoryList.map(({ id, category, description, imgLink }) => (
                 <div key={id} className='col-md-6 d-flex align-items-stretch'>
                   <Card imgLink={imgLink}>
-                    <NavLink to={'/categories'}>
+                    <NavLink to={'/categories/' + category}>
                       <h2>{category}</h2>
                       <p>{description}</p>
                     </NavLink>

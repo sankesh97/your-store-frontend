@@ -1,12 +1,14 @@
 import axios from 'axios';
 import { createContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [encodedToken, setEncodedToken] = useState();
+  const navigate = useNavigate();
 
-  const signupHandler = async () => {
+  const registerHandler = async () => {
     try {
       const response = await axios.post(`/api/auth/signup`, {
         firstName: 'Adarsh',
@@ -29,13 +31,16 @@ export const AuthProvider = ({ children }) => {
       console.log(response.data.encodedToken);
       setEncodedToken(response.data.encodedToken);
       localStorage.setItem('token', response.data.encodedToken);
+      navigate('/');
     } catch (err) {
       console.log(err.response);
     }
   };
 
   return (
-    <AuthContext.Provider value={{ encodedToken, loginHandler, signupHandler }}>
+    <AuthContext.Provider
+      value={{ encodedToken, loginHandler, registerHandler }}
+    >
       {children}
     </AuthContext.Provider>
   );

@@ -16,14 +16,20 @@ const SingleProduct = () => {
         <>
           <div className='container'>
             <div className='row'>
-              <div className='col-md-4 p-5'>
-                <img className='img-fluid' />
+              <div className='col-md-5 p-5'>
+                <img className='img-fluid' src={currentProduct.imageURL} />
               </div>
-              <div className='col-md-6 offset-md-2 p-5'>
+              <div className='col-md-6 offset-md-1 p-5 gy-5'>
                 <h1>{currentProduct.title}</h1>
+                <h5>
+                  Category: {currentProduct.category} |&nbsp;
+                  <i className='bi bi-star-fill'></i> {currentProduct.rating}
+                </h5>
                 <p>{currentProduct.description}</p>
-                <div className='input-group'>
-                  <button className='btn btn-outline-secondary' type='button'>
+                <h2>&#8377; {currentProduct.price}</h2>
+
+                <div className='input-group my-5'>
+                  <button className='btn btn-outline-dark' type='button'>
                     -
                   </button>
                   <input
@@ -31,29 +37,22 @@ const SingleProduct = () => {
                     className='form-control'
                     placeholder='Quanitity'
                     ref={quantity}
-                    aria-label="Recipient's username with two button addons"
-                    aria-describedby='button-addon4'
                   />
 
-                  <button className='btn btn-outline-secondary' type='button'>
+                  <button className='btn btn-outline-dark' type='button'>
                     +
                   </button>
                 </div>
                 <div className='input-group'>
-                  <button className='btn btn-outline-secondary' type='button'>
-                    -
+                  <button className='btn btn-outline-dark'>
+                    <i className='bi bi-person-heart fs-4'></i>
+                    <br />
+                    Add to Wish List
                   </button>
-                  <input
-                    type='text'
-                    className='form-control'
-                    placeholder='Quanitity'
-                    ref={quantity}
-                    aria-label="Recipient's username with two button addons"
-                    aria-describedby='button-addon4'
-                  />
-
-                  <button className='btn btn-outline-secondary' type='button'>
-                    +
+                  <button className='btn btn-outline-dark'>
+                    <i className='bi bi-bag fs-4'></i>
+                    <br />
+                    Add to Cart
                   </button>
                 </div>
               </div>
