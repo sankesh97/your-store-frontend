@@ -6,10 +6,9 @@ import 'bootstrap-icons/font/bootstrap-icons.min.css';
 
 import './App.css';
 
-import Home from './pages/Home/Home';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import Authentication from './pages/Authentication/Authentication';
+import Home from './pages/Home/Home';
 import ProductListing from './pages/ProductListing';
 import MockAPI from './pages/MockMan';
 import SingleProduct from './pages/SingleProduct/SingleProduct';

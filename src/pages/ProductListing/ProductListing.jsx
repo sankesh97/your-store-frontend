@@ -3,7 +3,7 @@ import {
   CartContext,
   CategoryContext,
   ProductContext,
-} from '../context/AppContext';
+} from '../../context/AppContext';
 import { NavLink } from 'react-router-dom';
 
 const ProductListing = () => {
