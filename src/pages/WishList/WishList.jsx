@@ -2,7 +2,8 @@ import { useContext, useEffect } from 'react';
 import { WishListContext } from '../../context/AppContext';
 
 const WishList = () => {
-  const { fetchWishList, wishList } = useContext(WishListContext);
+  const { fetchWishList, wishList, deleteWishList } =
+    useContext(WishListContext);
   useEffect(() => {
     fetchWishList();
   }, []);
@@ -36,37 +37,22 @@ const WishList = () => {
                     </div>
                     <div className='col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap'>
                       <div className=''>
-                        <select
-                          style={{ width: '100px' }}
-                          className='form-select me-4'
-                        >
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                        </select>
-                      </div>
-                      <div className=''>
-                        <h6 className='h6'>$1156.00</h6> <br />
-                        <small className='text-muted text-nowrap'>
-                          $460.00 / per item
-                        </small>
+                        <h6 className='h6'>&#8377;{product.price}</h6> <br />
                       </div>
                     </div>
                     <div className='col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2'>
-                      <div className='float-md-end'>
-                        <a
-                          href='#!'
-                          className='btn btn-light border px-2 icon-hover-primary'
-                        >
-                          <i className='bi bi-heart fa-lg px-1 text-secondary'></i>
-                        </a>
-                        <a
-                          href='#'
+                      <div className='float-md-end g-2'>
+                        <span className='btn btn-light border px-2 icon-hover-primary'>
+                          Add to Cart
+                        </span>
+                        <span
                           className='btn btn-light border text-danger icon-hover-danger'
+                          onClick={() => {
+                            deleteWishList(product._id);
+                          }}
                         >
                           Remove
-                        </a>
+                        </span>
                       </div>
                     </div>
                   </div>

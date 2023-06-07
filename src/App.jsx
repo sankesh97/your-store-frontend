@@ -17,9 +17,9 @@ import Checkout from './pages/Checkout/Checkout';
 import WishList from './pages/WishList/WishList';
 import Login from './pages/Authentication/Login';
 import Register from './pages/Authentication/Register';
+import { useEffect } from 'react';
 
 function App() {
-  const navigate = useNavigate();
   return (
     <>
       <header>
@@ -28,16 +28,8 @@ function App() {
       <main className='py-5 min-vh-100'>
         <Routes>
           <Route path='/' element={<Home />} />
-          {!localStorage.getItem('token') ? (
-            <>
-              <Route path='/login' element={<Login />} />
-              <Route path='/register' element={<Register />} />
-            </>
-          ) : (
-            () => {
-              navigate('/');
-            }
-          )}
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
           <Route path='/products' element={<ProductListing />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/wishlist' element={<WishList />} />

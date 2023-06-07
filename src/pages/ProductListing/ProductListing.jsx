@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {
   CartContext,
   CategoryContext,
@@ -7,10 +7,29 @@ import {
 import { NavLink } from 'react-router-dom';
 
 const ProductListing = () => {
-  const { filteredProductList, fetchProducts, sortProducts } =
-    useContext(ProductContext);
+  const { productList, fetchProducts } = useContext(ProductContext);
   const { categoryList, fetchCategories } = useContext(CategoryContext);
   const { addToCart } = useContext(CartContext);
+
+  const [sortProduct, setSortProduct] = useState();
+  const [showCategories, setshowCategories] = useState([]);
+  const [rating, setRating] = useState(0);
+
+  const categoryHandler = (event, selectedCategory) => {
+    if (event.target.checked) {
+      setshowCategories((prevState) => [...prevState, selectedCategory]);
+    } else {
+      setshowCategories((prevState) => {
+        return prevState.filter((element) => element !== selectedCategory);
+      });
+    }
+  };
+
+  const filterClearHandler = () => {
+    setSortProduct('');
+    setshowCategories([]);
+    setRating(0);
+  };
 
   useEffect(() => {
     fetchProducts();
@@ -40,7 +59,9 @@ const ProductListing = () => {
             <div className='collapse card d-lg-block mb-5' id='FilterContent'>
               <div className='d-flex justify-content-around py-2'>
                 <span>Product Filter</span>
-                <span>CLEAR</span>
+                <span onClick={() => filterClearHandler()}>
+                  <strong>CLEAR</strong>
+                </span>
               </div>
               <div className='accordion' id='accordionPanelsStayOpenExample'>
                 <div className='accordion-item'>
@@ -68,6 +89,10 @@ const ProductListing = () => {
                           type='radio'
                           name='flexRadioDefault'
                           id='flexRadioDefault1'
+                          checked={sortProduct === 'HTL'}
+                          onChange={() => {
+                            setSortProduct('HTL');
+                          }}
                         />
                         <label
                           className='form-check-label'
@@ -82,6 +107,10 @@ const ProductListing = () => {
                           type='radio'
                           name='flexRadioDefault'
                           id='flexRadioDefault1'
+                          checked={sortProduct === 'LTH'}
+                          onChange={() => {
+                            setSortProduct('LTH');
+                          }}
                         />
                         <label
                           className='form-check-label'
@@ -120,7 +149,11 @@ const ProductListing = () => {
                                 className='form-check-input'
                                 type='checkbox'
                                 value={category}
+                                checked={showCategories.includes(category)}
                                 id='flexCheckDefault'
+                                onChange={(event) => {
+                                  categoryHandler(event, category);
+                                }}
                               />
                               <label
                                 className='form-check-label'
@@ -171,8 +204,9 @@ const ProductListing = () => {
                           id='ratingsRange'
                           min='0'
                           max='5'
-                          defaultValue='2'
                           step='1'
+                          value={rating}
+                          onChange={(event) => setRating(event.target.value)}
                         ></input>
                       </div>
                     </div>
@@ -184,80 +218,94 @@ const ProductListing = () => {
           {/* <!-- sidebar -->*/}
           {/*<!-- content --> */}
           <div className='col-lg-9'>
-            <header className='d-sm-flex align-items-center border-bottom mb-2 pb-2'>
-              <strong className='d-block py-2'>
-                {filteredProductList.length} Items found
-              </strong>
-            </header>
-            {filteredProductList.map((product) => (
-              <div
-                key={product._id}
-                className='row justify-content-center mb-3'
-              >
-                <div className='col-md-12'>
-                  <div className='card shadow-0 border rounded-3'>
-                    <div className='card-body'>
-                      <div className='row g-0'>
-                        <div className='col-xl-3 col-md-4 d-flex justify-content-center'>
-                          <div className='bg-image hover-zoom ripple rounded ripple-surface me-md-3 mb-3 mb-md-0'>
-                            <img src={product.imageURL} className='w-100' />
-                            <a href='#!'>
-                              <div className='hover-overlay'>
-                                <div
-                                  className='mask'
-                                  style={{
-                                    backgroundColor:
-                                      'rgba(253, 253, 253, 0.15)',
-                                  }}
-                                ></div>
-                              </div>
-                            </a>
-                          </div>
-                        </div>
-                        <div className='col-xl-6 col-md-5 col-sm-7'>
-                          <h5>{product.title}</h5>
-                          <div className='d-flex flex-row'>
-                            <div className='text-warning mb-1 me-2'>
-                              <i className='bi bi-star'></i>
-                              <span className='ms-1'>{product.rating}</span>
+            {productList
+              .sort((a, b) => {
+                if (sortProduct === 'LTH') {
+                  return a.price - b.price;
+                } else if (sortProduct === 'HTL') {
+                  return b.price - a.price;
+                }
+              })
+              .filter((product) =>
+                showCategories.length > 0
+                  ? showCategories.includes(product.category)
+                  : true
+              )
+              .filter((product) => product.rating >= rating)
+              .map((product) => (
+                <div
+                  key={product._id}
+                  className='row justify-content-center mb-3'
+                >
+                  <div className='col-md-12'>
+                    <div className='card shadow-0 border rounded-3'>
+                      <div className='card-body'>
+                        <div className='row g-0'>
+                          <div className='col-xl-3 col-md-4 d-flex justify-content-center'>
+                            <div className='bg-image hover-zoom ripple rounded ripple-surface me-md-3 mb-3 mb-md-0'>
+                              <NavLink to={`/products/${product._id}`}>
+                                <img src={product.imageURL} className='w-100' />
+                              </NavLink>
+                              <a>
+                                <div className='hover-overlay'>
+                                  <div
+                                    className='mask'
+                                    style={{
+                                      backgroundColor:
+                                        'rgba(253, 253, 253, 0.15)',
+                                    }}
+                                  ></div>
+                                </div>
+                              </a>
                             </div>
                           </div>
+                          <div className='col-xl-6 col-md-5 col-sm-7'>
+                            <NavLink to={`/products/${product._id}`}>
+                              <h5>{product.title}</h5>
+                            </NavLink>
+                            <div className='d-flex flex-row'>
+                              <div className='text-warning mb-1 me-2'>
+                                <i className='bi bi-star'></i>
+                                <span className='ms-1'>{product.rating}</span>
+                              </div>
+                            </div>
 
-                          <p className='text mb-4 mb-md-0'>
-                            {product.description}
-                          </p>
-                        </div>
-                        <div className='col-xl-3 col-md-3 col-sm-5'>
-                          <div className='d-flex flex-row align-items-center mb-1'>
-                            <h4 className='mb-1 me-1'>
-                              &#8377;{product.price}
-                            </h4>
+                            <p className='text mb-4 mb-md-0'>
+                              <NavLink to={`/products/${product._id}`}>
+                                {product.description}
+                              </NavLink>
+                            </p>
                           </div>
-                          <div className='mt-4'>
-                            <button
-                              className='btn btn-primary shadow-0 mx-2'
-                              type='button'
-                              onClick={() => {
-                                console.log(product);
-                                addToCart(product);
-                              }}
-                            >
-                              Add To Cart
-                            </button>
-                            <a
-                              href='#!'
-                              className='btn btn-light border mx-2 pt-2 icon-hover'
-                            >
-                              <i className='bi bi-heart px-1'></i>
-                            </a>
+                          <div className='col-xl-3 col-md-3 col-sm-5'>
+                            <div className='d-flex flex-row align-items-center mb-1'>
+                              <h4 className='mb-1 me-1'>
+                                &#8377;{product.price}
+                              </h4>
+                            </div>
+                            <div className='mt-4'>
+                              <button
+                                className='btn btn-primary shadow-0 mx-2'
+                                type='button'
+                                onClick={() => {
+                                  addToCart(product);
+                                }}
+                              >
+                                Add To Cart
+                              </button>
+                              <a
+                                href='#!'
+                                className='btn btn-light border mx-2 pt-2 icon-hover'
+                              >
+                                <i className='bi bi-heart px-1'></i>
+                              </a>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       </div>

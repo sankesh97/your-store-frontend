@@ -1,10 +1,11 @@
 import { useContext, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { ProductContext } from '../../context/AppContext';
+import { ProductContext, WishListContext } from '../../context/AppContext';
 
 const SingleProduct = () => {
   const { productId } = useParams();
   const { fetchAProduct, currentProduct } = useContext(ProductContext);
+  const { addWishList } = useContext(WishListContext);
   const quantity = useRef(1);
   useEffect(() => {
     fetchAProduct(productId);
@@ -44,7 +45,12 @@ const SingleProduct = () => {
                   </button>
                 </div>
                 <div className='input-group'>
-                  <button className='btn btn-outline-dark'>
+                  <button
+                    className='btn btn-outline-dark'
+                    onClick={() => {
+                      addWishList(currentProduct);
+                    }}
+                  >
                     <i className='bi bi-person-heart fs-4'></i>
                     <br />
                     Add to Wish List

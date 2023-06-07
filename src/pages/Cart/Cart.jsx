@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import { CartContext } from '../../context/AppContext';
 
 const Cart = () => {
-  const { fetchCartDetails, cartList } = useContext(CartContext);
+  const { fetchCartDetails, cartList, deleteCart } = useContext(CartContext);
   useEffect(() => {
     fetchCartDetails();
   }, []);
@@ -38,22 +38,17 @@ const Cart = () => {
                           </div>
                         </div>
                         <div className='col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap'>
-                          <div className=''>
-                            <select
-                              style={{ width: '100px' }}
-                              className='form-select me-4'
-                            >
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                            </select>
+                          <div className='px-3'>
+                            <input type='text' value={product.qty} disabled />
                           </div>
                           <div className=''>
-                            <h6 className='h6'>$1156.00</h6> <br />
+                            <h6 className='h6'>
+                              {product.price * product.qty}
+                            </h6>{' '}
+                            <br />
                             <small className='text-muted text-nowrap'>
                               {' '}
-                              $460.00 / per item{' '}
+                              {product.price} / per item{' '}
                             </small>
                           </div>
                         </div>
@@ -65,12 +60,14 @@ const Cart = () => {
                             >
                               <i className='bi bi-heart fa-lg px-1 text-secondary'></i>
                             </a>
-                            <a
-                              href='#'
+                            <span
+                              onClick={() => {
+                                deleteCart(product);
+                              }}
                               className='btn btn-light border text-danger icon-hover-danger'
                             >
                               Remove
-                            </a>
+                            </span>
                           </div>
                         </div>
                       </div>
